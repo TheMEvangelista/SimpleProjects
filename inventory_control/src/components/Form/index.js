@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import * as C from "./styles";
+import Grid from "../Grid";
 
-const Form = ({ handleAdd }) => {
+const Form = ({ handleAdd, transactionList, setTransactionList }) => {
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
   const [isExpense, setExpense] = useState(false);
@@ -50,21 +51,22 @@ const Form = ({ handleAdd }) => {
             type="radio"
             id="rIncome"
             defaultChecked
-            name="group"
+            name="group1"
             onChange={() => setExpense(!isExpense)}
           />
           <C.Label htmlFor="rIncome">Entrada</C.Label>
           <C.Input
             type="radio"
-            id="rIncome"
+            id="rExpenses"
             defaultChecked
-            name="group"
+            name="group1"
             onChange={() => setExpense(!isExpense)}
           />
-          <C.Label htmlFor="rIncome">Saída</C.Label>
+          <C.Label htmlFor="rExpenses">Saída</C.Label>
         </C.RadioGroup>
         <C.Button onClick={handleSave}>Adicionar</C.Button>
       </C.Container>
+      <Grid items={transactionList} setItems={setTransactionList} />
     </>
   );
 };
